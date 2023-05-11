@@ -1,18 +1,18 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {createElement} from './utils.js';
+import {getStrRand} from './utils.js';
 import App from './app.js';
 import Store from './store.js';
 
 const store = new Store({
-  list: [
-    {code: 1, title: 'Название элемента'},
-    {code: 2, title: 'Некий объект'},
-    {code: 3, title: 'Заголовок'},
-    {code: 4, title: 'Очень длинное название элемента из семи слов'},
-    {code: 5, title: 'Запись'},
-    {code: 6, title: 'Шестая запись'},
-    {code: 7, title: 'Седьмая запись'},
+  "list": [
+    {number: 1, attentionCounter: 0, code: getStrRand(), title: "Название элемента"},
+    {number: 2, attentionCounter: 0, code: getStrRand(), title: "Некий объект"},
+    {number: 3, attentionCounter: 0, code: getStrRand(), title: "Заголовок"},
+    {number: 4, attentionCounter: 0, code: getStrRand(), title: "Очень длинное название элемента из семи слов"},
+    {number: 5, attentionCounter: 0, code: getStrRand(), title: "Запись"},
+    {number: 6, attentionCounter: 0, code: getStrRand(), title: "Шестая запись"},
+    {number: 7, attentionCounter: 0, code: getStrRand(), title: "Седьмая запись"}
   ]
 });
 

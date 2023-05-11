@@ -1,3 +1,5 @@
+import {getStrRand} from "./utils.js";
+
 /**
  * Хранилище состояния приложения
  */
@@ -5,6 +7,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.lastItemNumber = initState.list.length; // Порядковый номер последнего добавленного элемента
   }
 
   /**
@@ -42,9 +45,16 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    this.lastItemNumber += 1;
+
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.state.list.length + 1, title: 'Новая запись'}]
+      list: [...this.state.list, {
+        number: this.lastItemNumber,
+        code: getStrRand(),
+        title: 'Новая запись',
+        attentionCounter: 0,
+      }]
     })
   };
 
@@ -69,6 +79,12 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+        }
+        if (item.code !== code && item.selected) {
+          item.selected = !item.selected;
+        }
+        if (item.code === code && item.selected) {
+          item.attentionCounter += 1;
         }
         return item;
       })
