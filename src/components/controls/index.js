@@ -1,12 +1,12 @@
 import React from 'react';
 import './style.css';
 
-function Controls({store}) {
+function Controls({onAdd}) {
   return (
     <div className="Controls">
       <button
         className="Controls-button"
-        onClick={() => store.addItem()}>Добавить</button>
+        onClick={() => onAdd()}>Добавить</button>
     </div>
   )
 }

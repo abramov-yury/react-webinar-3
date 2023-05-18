@@ -23,10 +23,14 @@ function App({store}) {
     store.selectItem(code);
   }
 
+  const onAddItem = () => {
+    store.addItem();
+  }
+
   return (
     <PageLayout>
       <Head title='Приложение на чистом JS' />
-      <Controls store={store} />
+      <Controls onAdd={onAddItem} />
       <List list={list} onDelete={onDelete} onSelect={onSelect}/>
     </PageLayout>
   );
