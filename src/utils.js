@@ -45,21 +45,19 @@ export function getStrRand () {
 }
 
 /**
- * Добавление окончания к существительным
- *
- * Использовать так:
- *  makeEnding(5, "товар", "", "а", "ов");
- *  makeEnding(5, "раз", "", "а", "");
+ * Плюрализация
+ * Возвращает вариант с учётом правил множественного числа под указанную локаль
+ * @param value {Number} Число, под которое выбирается вариант формы.
+ * @param variants {Object<String>} Варианты форм множественного числа.
+ * @example plural(5, {one: 'товар', few: 'товара', many: 'товаров'})
+ * @param [locale] {String} Локаль (код языка)
+ * @returns {*|string}
  */
-
-export function makeEnding(number, prefix, one, two, many) {
-  const str = number.toString()
-  const digit = parseInt(str[str.length - 1], 10);
-  if (isNaN(digit)) {return ""}
-
-  if (str.length > 1 && str[str.length - 2] === '1') {return number + " " + prefix + many;}
-  if (digit === 1) {return number + " " + prefix + one;}
-  else if (digit > 1 && digit <= 4) {return number + " " + prefix + two;}
-  else if (digit === 0 || digit >= 5) {return number + " " + prefix + many;}
-  else {return ""}
+export function plural(value, variants = {}, locale = 'ru-RU') {
+  // Получаем фурму кодовой строкой: 'zero', 'one', 'two', 'few', 'many', 'other'
+  // В русском языке 3 формы: 'one', 'few', 'many', и 'other' для дробных
+  // В английском 2 формы: 'one', 'other'
+  const key = new Intl.PluralRules(locale).select(value);
+  // Возвращаем вариант по ключу, если он есть
+  return variants[key] || '';
 }
