@@ -15,11 +15,19 @@ function App({store}) {
 
   const list = store.getState().list;
 
+  const onDelete = (code) => {
+    store.deleteItem(code);
+  }
+
+  const onSelect = (code) => {
+    store.selectItem(code);
+  }
+
   return (
     <PageLayout>
       <Head title='Приложение на чистом JS' />
       <Controls store={store} />
-      <List store={store} />
+      <List list={list} onDelete={onDelete} onSelect={onSelect}/>
     </PageLayout>
   );
 }
