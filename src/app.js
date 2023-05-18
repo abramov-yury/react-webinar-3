@@ -11,6 +11,8 @@ import PageLayout from './components/page-layout/index.js';
  * @returns {React.ReactElement}
  */
 
+// useCallback - запоминает функцию внутри компонента
+
 function App({store}) {
 
   const list = store.getState().list;

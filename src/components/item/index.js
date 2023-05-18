@@ -11,7 +11,7 @@ function Item ({item, onDelete, onSelect}) {
       <div className='Item-code'>{item.number}</div>
       <div className='Item-title'>
         <span>{item.title}</span>
-        {item.attentionCounter ? <Counter number={item.attentionCounter} />  : ""}
+        {item.count && <Counter number={item.count} />}
       </div>
       <div className='Item-actions'>
         <button className='Item-button' onClick={() => onDelete(item.code)}>
@@ -26,7 +26,6 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.string,
     number: PropTypes.number,
-    attentionCounter: PropTypes.number,
     title: PropTypes.string,
     selected: PropTypes.bool,
   }).isRequired,
