@@ -17,11 +17,11 @@ function App({store}) {
   const list = store.getState().list;
 
   return (
-    <PageLayout
-      head={<Head title='Приложение на чистом JS' />}
-      controls={<Controls store={store} />}
-      content={<List store={store} />}
-    />
+    <PageLayout>
+      <Head title='Приложение на чистом JS' />
+      <Controls store={store} />
+      <List store={store} />
+    </PageLayout>
   );
 }
 
