@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
-import Counter from "./counter.js";
+
+import List from './components/list/index.js';
 
 /**
  * Приложение
@@ -21,25 +22,7 @@ function App({store}) {
         <button onClick={() => store.addItem()}>Добавить</button>
       </div>
       <div className='App-center'>
-        <div className='List'>{
-          list.map(item =>
-            <div key={item.code} className='List-item'>
-              <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-                   onClick={() => store.selectItem(item.code)}>
-                <div className='Item-code'>{item.number}</div>
-                <div className='Item-title'>
-                  <span>{item.title}</span>
-                  {item.attentionCounter ? <Counter number={item.attentionCounter} />  : ""}
-                </div>
-                <div className='Item-actions'>
-                  <button className='Item-button' onClick={() => store.deleteItem(item.code)}>
-                    Удалить
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        <List store={store} />
       </div>
     </div>
   );

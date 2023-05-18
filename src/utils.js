@@ -46,6 +46,10 @@ export function getStrRand () {
 
 /**
  * Добавление окончания к существительным
+ *
+ * Использовать так:
+ *  makeEnding(5, "товар", "", "а", "ов");
+ *  makeEnding(5, "раз", "", "а", "");
  */
 
 export function makeEnding(number, prefix, one, two, many) {
