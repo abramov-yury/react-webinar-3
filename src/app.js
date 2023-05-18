@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 
+import Head from './components/head/index.js';
 import List from './components/list/index.js';
 import Controls from './components/controls/index.js';
 
@@ -17,7 +18,7 @@ function App({store}) {
   return (
     <div className='App'>
       <div className='App-head'>
-        <h1>Приложение на чистом JS</h1>
+        <Head title='Приложение на чистом JS' />
       </div>
       <div className='App-controls'>
         <Controls store={store} />
