@@ -9,4 +9,4 @@ function Head({title}) {
   )
 }
 
-export default Head;
+export default React.memo(Head);

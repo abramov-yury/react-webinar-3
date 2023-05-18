@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import Head from './components/head/index.js';
 import List from './components/list/index.js';
@@ -15,17 +15,17 @@ function App({store}) {
 
   const list = store.getState().list;
 
-  const onDelete = (code) => {
+  const onDelete = useCallback((code) => {
     store.deleteItem(code);
-  }
+  }, [store])
 
-  const onSelect = (code) => {
+  const onSelect = useCallback((code) => {
     store.selectItem(code);
-  }
+  }, [store])
 
-  const onAddItem = () => {
+  const onAddItem = useCallback(() => {
     store.addItem();
-  }
+  }, [store])
 
   return (
     <PageLayout>

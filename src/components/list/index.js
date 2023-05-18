@@ -34,4 +34,4 @@ List.defaultProps = {
   onSelect: () => {},
 }
 
-export default List;
+export default React.memo(List);

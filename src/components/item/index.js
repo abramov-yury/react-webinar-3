@@ -39,4 +39,4 @@ Item.defaultProps = {
   onSelect: () => {},
 }
 
-export default Item;
+export default React.memo(Item);
