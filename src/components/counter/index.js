@@ -1,5 +1,5 @@
 import React from "react";
-import {makeEnding} from "./utils.js";
+import {makeEnding} from "../../utils.js";
 
 function Counter ({number}) {
   return (

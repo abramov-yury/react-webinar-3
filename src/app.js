@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css';
 
 import Head from './components/head/index.js';
 import List from './components/list/index.js';

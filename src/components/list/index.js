@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-import Counter from '../../counter.js';
+import Counter from '../counter/index.js';
 
 function List ({store}) {
 
