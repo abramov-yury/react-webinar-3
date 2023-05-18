@@ -1,20 +1,21 @@
 import React from 'react';
+import {cn as bem} from '@bem-react/classname';
 import './style.css';
 
-import Head from '../head/index.js';
-import Controls from '../controls/index.js';
-import List from '../list/index.js';
 
 function PageLayout ({head, controls, content}) {
+
+  const cn = bem('PageLayout');
+
   return (
-    <div className='PageLayout'>
-      <div className='PageLayout-head'>
+    <div className={cn()}>
+      <div className={cn('head')}>
         {head}
       </div>
-      <div className='PageLayout-controls'>
+      <div className={cn('controls')}>
         {controls}
       </div>
-      <div className='PageLayout-center'>
+      <div className={cn('content')}>
         {content}
       </div>
     </div>
