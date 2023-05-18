@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 
 import List from './components/list/index.js';
+import Controls from './components/controls/index.js';
 
 /**
  * Приложение
@@ -19,7 +20,7 @@ function App({store}) {
         <h1>Приложение на чистом JS</h1>
       </div>
       <div className='App-controls'>
-        <button onClick={() => store.addItem()}>Добавить</button>
+        <Controls store={store} />
       </div>
       <div className='App-center'>
         <List store={store} />
