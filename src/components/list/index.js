@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 import Item from '../item/index.js';
+
 
 function List ({list, onDelete, onSelect}) {
 
@@ -17,6 +19,19 @@ function List ({list, onDelete, onSelect}) {
       }
     </div>
   )
+}
+
+List.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    code: PropTypes.string,
+  })).isRequired,
+  onDelete: PropTypes.func,
+  onSelect: PropTypes.func,
+}
+
+List.defaultProps = {
+  onDelete: () => {},
+  onSelect: () => {},
 }
 
 export default List;

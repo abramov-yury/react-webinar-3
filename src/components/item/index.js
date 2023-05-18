@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes, {number} from 'prop-types';
 import './style.css';
 
 import Counter from '../counter/index.js';
@@ -19,6 +20,23 @@ function Item ({item, onDelete, onSelect}) {
       </div>
     </div>
   )
+}
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    code: PropTypes.string,
+    number: PropTypes.number,
+    attentionCounter: PropTypes.number,
+    title: PropTypes.string,
+    selected: PropTypes.bool,
+  }).isRequired,
+  onDelete: PropTypes.func,
+  onSelect: PropTypes.func,
+}
+
+Item.defaultProps = {
+  onDelete: () => {},
+  onSelect: () => {},
 }
 
 export default Item;
