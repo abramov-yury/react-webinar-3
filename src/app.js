@@ -14,15 +14,12 @@ import PageLayout from './components/page-layout/index.js';
 // useCallback - запоминает функцию внутри компонента
 
 function App({store}) {
-
+  
   const list = store.getState().list;
 
   const callbacks = {
     addItem : useCallback((code) => {
       store.addItem(code);
-    }, [store]),
-    onSelect : useCallback((code) => {
-      store.selectItem(code);
     }, [store]),
     goToCart : useCallback(() => {
       store.goToCart();
@@ -33,7 +30,7 @@ function App({store}) {
     <PageLayout>
       <Head title='Магазин' />
       <Controls goToCart={callbacks.goToCart} />
-      <List list={list} addItem={callbacks.addItem} onSelect={callbacks.onSelect}/>
+      <List list={list} addItem={callbacks.addItem}/>
     </PageLayout>
   );
 }
