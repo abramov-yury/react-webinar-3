@@ -1,5 +1,7 @@
 .Cart {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   width: 100%;
   height: 100%;
@@ -7,10 +9,43 @@
   background-color: rgba(0, 0, 0, .7);
 }
 
-.Cart-content {
+.Cart-inner {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+
   max-width: 960px;
-  min-width: 320px;
+  padding-bottom: 70px;
 
   background-color: #ffffff;
   border-radius: 10px;
+}
+
+.Cart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.Cart-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.Cart-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  padding: 20px 20px 40px;
+
+  font-size: 24px;
+  font-weight: 700;
 }
