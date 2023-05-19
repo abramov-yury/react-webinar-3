@@ -17,23 +17,23 @@ function App({store}) {
 
   const list = store.getState().list;
 
-  const onDelete = useCallback((code) => {
-    store.deleteItem(code);
-  }, [store])
-
-  const onSelect = useCallback((code) => {
-    store.selectItem(code);
-  }, [store])
-
-  const onAddItem = useCallback(() => {
-    store.addItem();
-  }, [store])
+  const callbacks = {
+    onDelete : useCallback((code) => {
+      store.deleteItem(code);
+    }, [store]),
+    onSelect : useCallback((code) => {
+      store.selectItem(code);
+    }, [store]),
+    onAddItem : useCallback(() => {
+      store.addItem();
+    }, [store])
+  }
 
   return (
     <PageLayout>
       <Head title='Приложение на чистом JS' />
-      <Controls onAdd={onAddItem} />
-      <List list={list} onDelete={onDelete} onSelect={onSelect}/>
+      <Controls onAdd={callbacks.onAddItem} />
+      <List list={list} onDelete={callbacks.onDelete} onSelect={callbacks.onSelect}/>
     </PageLayout>
   );
 }

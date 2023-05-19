@@ -4,27 +4,33 @@ import './style.css';
 
 import Counter from '../counter/index.js';
 
-function Item ({item, onDelete, onSelect}) {
+function Item (props) {
 
   const [count, setCount] = useState(0);
 
-  const onClick = () => {
-    onSelect(item.code);
-    if(!item.selected) {
-      setCount(count + 1);
+  const callbacks = {
+    onClick : () => {
+      props.onSelect(props.item.code);
+      if(!props.item.selected) {
+        setCount(count + 1);
+      }
+    },
+    onDelete : (evt) => {
+      evt.stopPropagation();
+      props.onDelete(props.item.code);
     }
   }
 
   return (
-    <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-         onClick={onClick}>
-      <div className='Item-code'>{item.code}</div>
+    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
+         onClick={callbacks.onClick}>
+      <div className='Item-code'>{props.item.code}</div>
       <div className='Item-title'>
-        <span>{item.title}</span>
+        <span>{props.item.title}</span>
         {count ? <Counter number={count} /> : ''}
       </div>
       <div className='Item-actions'>
-        <button className='Item-button' onClick={() => onDelete(item.code)}>
+        <button className='Item-button' onClick={callbacks.onDelete}>
           Удалить
         </button>
       </div>
