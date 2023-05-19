@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
 import Counter from '../counter/index.js';
 
 function Item ({item, onDelete, onSelect}) {
+
+  const [count, setCount] = useState(0);
+
+  const onClick = () => {
+    onSelect(item.code);
+    if(!item.selected) {
+      setCount(count + 1);
+    }
+  }
+
   return (
     <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-         onClick={() => onSelect(item.code)}>
+         onClick={onClick}>
       <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>
         <span>{item.title}</span>
-        {item.count && <Counter number={item.count} />}
+        {count ? <Counter number={count} /> : ''}
       </div>
       <div className='Item-actions'>
         <button className='Item-button' onClick={() => onDelete(item.code)}>
