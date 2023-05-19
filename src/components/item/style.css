@@ -1,21 +1,24 @@
 .Item {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
   transition: background-color 1s;
-}
-
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
 }
 
 .Item-code {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
-  width: 100%;
+.Item-title,
+.Item-price {
+  flex-grow: 1;
   padding: 20px 10px;
+}
+
+.Item-price {
+  font-size: 18px;
+  text-align: end;
+  color: #404040;
 }
 
 .Item-actions {
@@ -24,6 +27,6 @@
   padding: 20px 20px 20px 10px;
 }
 
-.Item__button {
+.Item-button {
   cursor: pointer;
 }

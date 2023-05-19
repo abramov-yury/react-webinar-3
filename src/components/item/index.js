@@ -19,8 +19,9 @@ function Item (props) {
       <div className='Item-title'>
         <span>{props.item.title}</span>
       </div>
+      <div className='Item-price'><span>{`${props.item.price} ₽`}</span></div>
       <div className='Item-actions'>
-        <button className='Item__button' onClick={callbacks.addItem}>
+        <button className='Item-button' onClick={callbacks.addItem}>
           Добавить
         </button>
       </div>
@@ -33,6 +34,7 @@ Item.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     selected: PropTypes.bool,
+    price: PropTypes.number,
   }).isRequired,
   addItem: PropTypes.func,
 }
