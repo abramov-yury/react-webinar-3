@@ -5,14 +5,14 @@ import App from './app.js';
 import Store from './store.js';
 
 const store = new Store({
-  "list": [
-    {code: generateCode(), title: "Название элемента"},
-    {code: generateCode(), title: "Некий объект"},
-    {code: generateCode(), title: "Заголовок"},
-    {code: generateCode(), title: "Очень длинное название элемента из семи слов"},
-    {code: generateCode(), title: "Запись"},
-    {code: generateCode(), title: "Шестая запись"},
-    {code: generateCode(), title: "Седьмая запись"}
+  list: [
+    {code: generateCode(), title: 'Название товара', price: 100.0},
+    {code: generateCode(), title: 'Книга про React', price: 770},
+    {code: generateCode(), title: 'Конфета', price: 33},
+    {code: generateCode(), title: 'Трактор', price: 7955320},
+    {code: generateCode(), title: 'Телефон iPhone XIXV', price: 120000},
+    {code: generateCode(), title: 'Карандаши цветные', price: 111},
+    {code: generateCode(), title: 'Товар сюрприз', price: 0},
   ]
 });
 
@@ -24,3 +24,4 @@ store.subscribe(() => {
 
 // Первый рендер приложения
 root.render(<App store={store}/>);
+

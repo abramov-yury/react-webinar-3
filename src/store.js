@@ -1,4 +1,4 @@
-import {generateCode} from "./utils.js";
+import {generateCode} from "./utils";
 
 /**
  * Хранилище состояния приложения
@@ -7,7 +7,6 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
-    this.lastItemNumber = initState.list.length; // Порядковый номер последнего добавленного элемента
   }
 
   /**
@@ -45,15 +44,9 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
-    this.lastItemNumber += 1;
-
     this.setState({
       ...this.state,
-      list: [...this.state.list, {
-        code: generateCode(),
-        title: 'Новая запись',
-        attentionCounter: 0,
-      }]
+      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
     })
   };
 
@@ -64,6 +57,7 @@ class Store {
   deleteItem(code) {
     this.setState({
       ...this.state,
+      // Новый список, в котором не будет удаляемой записи
       list: this.state.list.filter(item => item.code !== code)
     })
   };
@@ -77,11 +71,13 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
+          // Смена выделения и подсчёт
           return {
             ...item,
             selected: !item.selected,
           };
         }
+        // Сброс выделения если выделена
         return item.selected ? {...item, selected: false} : item;
       })
     })
