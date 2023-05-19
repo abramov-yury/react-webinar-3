@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
+import Button from '../button/index.js';
+
 function Cart({goToCart}) {
   return (
     <div className="Cart">
@@ -9,9 +11,7 @@ function Cart({goToCart}) {
         <span className="Cart-text">В корзине:</span>
         <span className="Cart-data">пусто</span>
       </p>
-      <button
-        className="Cart-button"
-        onClick={() => goToCart()}>Перейти</button>
+      <Button onClick={goToCart} text="Перейти"/>
     </div>
   )
 }

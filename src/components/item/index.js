@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
+import Button from '../button/index.js';
+
 function Item (props) {
 
   const [count, setCount] = useState(0);
@@ -21,9 +23,7 @@ function Item (props) {
       </div>
       <div className='Item-price'><span>{`${props.item.price} ₽`}</span></div>
       <div className='Item-actions'>
-        <button className='Item-button' onClick={callbacks.addItem}>
-          Добавить
-        </button>
+        <Button onClick={callbacks.addItem} text="Добавить" />
       </div>
     </div>
   )

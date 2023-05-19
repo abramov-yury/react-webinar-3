@@ -1,7 +1,7 @@
 .Cart {
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 24px;
   padding: 20px;
 }
 
@@ -27,8 +27,4 @@
 .Cart-data {
   font-size: 18px;
   font-weight: 700;
-}
-
-.Cart-button {
-  cursor: pointer;
 }
