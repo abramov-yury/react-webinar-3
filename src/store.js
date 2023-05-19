@@ -1,4 +1,4 @@
-import {getStrRand} from "./utils.js";
+import {generateCode} from "./utils.js";
 
 /**
  * Хранилище состояния приложения
@@ -50,8 +50,7 @@ class Store {
     this.setState({
       ...this.state,
       list: [...this.state.list, {
-        number: this.lastItemNumber,
-        code: getStrRand(),
+        code: generateCode(),
         title: 'Новая запись',
         attentionCounter: 0,
       }]

@@ -23,7 +23,7 @@ function List ({list, onDelete, onSelect}) {
 
 List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.string,
+    code: PropTypes.number,
   })).isRequired,
   onDelete: PropTypes.func,
   onSelect: PropTypes.func,

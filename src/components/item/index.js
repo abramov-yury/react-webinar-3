@@ -8,7 +8,7 @@ function Item ({item, onDelete, onSelect}) {
   return (
     <div className={'Item' + (item.selected ? ' Item_selected' : '')}
          onClick={() => onSelect(item.code)}>
-      <div className='Item-code'>{item.number}</div>
+      <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>
         <span>{item.title}</span>
         {item.count && <Counter number={item.count} />}
@@ -24,8 +24,7 @@ function Item ({item, onDelete, onSelect}) {
 
 Item.propTypes = {
   item: PropTypes.shape({
-    code: PropTypes.string,
-    number: PropTypes.number,
+    code: PropTypes.number,
     title: PropTypes.string,
     selected: PropTypes.bool,
   }).isRequired,
