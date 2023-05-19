@@ -1,9 +1,9 @@
-.Controls {
+.Cart {
   display: flex;
   justify-content: flex-end;
   padding: 20px;
 }
 
-.Controls-button {
+.Cart__button {
   cursor: pointer;
 }

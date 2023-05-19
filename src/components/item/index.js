@@ -9,29 +9,22 @@ function Item (props) {
   const [count, setCount] = useState(0);
 
   const callbacks = {
-    onClick : () => {
-      props.onSelect(props.item.code);
-      if(!props.item.selected) {
-        setCount(count + 1);
-      }
-    },
-    onDelete : (evt) => {
+    addItem : (evt) => {
       evt.stopPropagation();
-      props.onDelete(props.item.code);
+      props.addItem(props.item.code);
     }
   }
 
   return (
-    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-         onClick={callbacks.onClick}>
+    <div className='Item'>
       <div className='Item-code'>{props.item.code}</div>
       <div className='Item-title'>
         <span>{props.item.title}</span>
         {count ? <Counter number={count} /> : ''}
       </div>
       <div className='Item-actions'>
-        <button className='Item-button' onClick={callbacks.onDelete}>
-          Удалить
+        <button className='Item__button' onClick={callbacks.addItem}>
+          Добавить
         </button>
       </div>
     </div>
@@ -44,13 +37,11 @@ Item.propTypes = {
     title: PropTypes.string,
     selected: PropTypes.bool,
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
+  addItem: PropTypes.func,
 }
 
 Item.defaultProps = {
-  onDelete: () => {},
-  onSelect: () => {},
+  addItem: () => {},
 }
 
 export default React.memo(Item);

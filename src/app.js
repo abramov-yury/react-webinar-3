@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 
 import Head from './components/head/index.js';
 import List from './components/list/index.js';
-import Controls from './components/controls/index.js';
+import Cart from './components/cart/index.js';
 import PageLayout from './components/page-layout/index.js';
 
 /**
@@ -18,22 +18,22 @@ function App({store}) {
   const list = store.getState().list;
 
   const callbacks = {
-    onDelete : useCallback((code) => {
-      store.deleteItem(code);
+    addItem : useCallback((code) => {
+      store.addItem(code);
     }, [store]),
     onSelect : useCallback((code) => {
       store.selectItem(code);
     }, [store]),
-    onAddItem : useCallback(() => {
-      store.addItem();
+    goToCart : useCallback(() => {
+      store.goToCart();
     }, [store])
   }
 
   return (
     <PageLayout>
-      <Head title='Приложение на чистом JS' />
-      <Controls onAdd={callbacks.onAddItem} />
-      <List list={list} onDelete={callbacks.onDelete} onSelect={callbacks.onSelect}/>
+      <Head title='Магазин' />
+      <Cart goToCart={callbacks.goToCart} />
+      <List list={list} addItem={callbacks.addItem} onSelect={callbacks.onSelect}/>
     </PageLayout>
   );
 }
