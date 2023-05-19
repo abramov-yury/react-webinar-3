@@ -1,30 +1,25 @@
-.Cart {
+.Controls {
   display: flex;
   justify-content: flex-end;
-  gap: 24px;
   padding: 20px;
 }
 
-.Cart-info,
-.Cart-text,
-.Cart-data {
+.Controls-cart,
+.Controls-text,
+.Controls-data {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Cart-info {
-  gap: 14px;
-
-  margin: 0;
-  padding: 0;
-}
-
-.Cart-text {
+.Controls-text {
+  margin-right: 14px;
   font-size: 18px;
 }
 
-.Cart-data {
+.Controls-data {
+  margin-right: 24px;
+
   font-size: 18px;
   font-weight: 700;
 }

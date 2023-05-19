@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 
 import Head from './components/head/index.js';
 import List from './components/list/index.js';
-import Cart from './components/cart/index.js';
+import Controls from './components/controls/index.js';
 import PageLayout from './components/page-layout/index.js';
 
 /**
@@ -32,7 +32,7 @@ function App({store}) {
   return (
     <PageLayout>
       <Head title='Магазин' />
-      <Cart goToCart={callbacks.goToCart} />
+      <Controls goToCart={callbacks.goToCart} />
       <List list={list} addItem={callbacks.addItem} onSelect={callbacks.onSelect}/>
     </PageLayout>
   );
