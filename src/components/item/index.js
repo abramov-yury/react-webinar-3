@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-import Counter from '../counter/index.js';
-
 function Item (props) {
 
   const [count, setCount] = useState(0);
@@ -20,7 +18,6 @@ function Item (props) {
       <div className='Item-code'>{props.item.code}</div>
       <div className='Item-title'>
         <span>{props.item.title}</span>
-        {count ? <Counter number={count} /> : ''}
       </div>
       <div className='Item-actions'>
         <button className='Item__button' onClick={callbacks.addItem}>
