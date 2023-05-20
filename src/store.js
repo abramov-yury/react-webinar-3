@@ -5,6 +5,10 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.cart = {
+      items: [],
+      active: false,
+    }
   }
 
   /**
@@ -39,18 +43,12 @@ class Store {
   }
 
   /**
-   * Переход в корзину, открывается модальное окно
+   * Открыть корзину, модальное окно появляется в разметке.
+   * Закрыть корзину, модальное окно исчезает из разметки.
    */
-  goToCart() {
-    console.log('Перейти в корзину');
-  };
-
-
-  /**
-   * Зарыть корзину, модальное окно исчезает из разметки
-   */
-  closeCart() {
-    console.log('Закрыть корзину');
+  toggleCart() {
+    this.cart.active = !this.cart.active;
+    for (const listener of this.listeners) listener();
   }
 
   /**

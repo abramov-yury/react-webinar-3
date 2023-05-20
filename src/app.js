@@ -23,11 +23,8 @@ function App({store}) {
     addItem : useCallback((code) => {
       store.addItem(code);
     }, [store]),
-    goToCart : useCallback(() => {
-      store.goToCart();
-    }, [store]),
-    closeCart: useCallback(() => {
-      store.closeCart();
+    toggleCart : useCallback(() => {
+      store.toggleCart();
     }, [store]),
   }
 
@@ -35,10 +32,10 @@ function App({store}) {
     <div className="App">
       <PageLayout>
         <Head title='Магазин' />
-        <Controls goToCart={callbacks.goToCart} />
+        <Controls openCart={callbacks.toggleCart} />
         <List list={list} addItem={callbacks.addItem}/>
       </PageLayout>
-      <Cart closeCart={callbacks.closeCart} />
+      {store.cart.active && <Cart closeCart={callbacks.toggleCart} />}
     </div>
   );
 }

@@ -4,24 +4,20 @@ import './style.css';
 
 import Button from '../button/index.js';
 
-function Controls({goToCart}) {
+function Controls({openCart}) {
   return (
     <div className="Controls">
       <div className="Controls-cart">
         <span className="Controls-text">В корзине:</span>
         <span className="Controls-data">пусто</span>
-        <Button onClick={goToCart} text="Перейти"/>
+        <Button onClick={openCart} text="Перейти"/>
       </div>
     </div>
   )
 }
 
 Controls.propTypes = {
-  goToCart: PropTypes.func,
-}
-
-Controls.defaultProps = {
-  onAdd: () => {},
+  openCart: PropTypes.func.isRequired,
 }
 
 export default React.memo(Controls);
