@@ -9,6 +9,7 @@ class Store {
       items: [],
       active: false,
       cost: 0,
+      products: [],
     }
   }
 
@@ -52,14 +53,23 @@ class Store {
     switchCart(this.cart.active);
   }
 
+  addProduct(item) {
+    if (this.cart.products.includes(item)) {
+      item.quantity = item.quantity + 1;
+      return;
+    }
+    this.cart.products.push(item);
+    item.quantity = 1;
+  }
+
   /**
    * Добавление товара в корзину
    * @param item {Object}
    * @param setCartItems {Function}
    */
   addItem(item, setCartItems) {
-    console.log(`Добавить товар - ${item.title} - в корзину`);
     this.cart.items.push(item);
+    this.addProduct(item);
     this.cart.cost += item.price;
     setCartItems(this.cart.items.length);
   };

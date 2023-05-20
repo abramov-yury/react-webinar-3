@@ -49,3 +49,11 @@
   font-size: 24px;
   font-weight: 700;
 }
+
+.Cart-item {
+  border-bottom: 1px dashed #ccc;
+}
+
+.Cart-item:first-of-type {
+  border-top: 1px dashed #ccc;
+}

@@ -11,9 +11,15 @@ function Cart (props) {
   const cn = bem('Cart');
   const {cart, closeCart} = props;
 
+  const removeItem = () => {
+    console.log('Удалить элемент из корзины');
+  }
+
   const renderItemTemplate = (item) => {
     return (
-      <Item />
+      <div key={item.code} className={cn('item')}>
+        <Item item={item} onClick={removeItem} quantity={item.quantity} buttonText="Удалить"/>
+      </div>
     )
   }
 
@@ -22,7 +28,7 @@ function Cart (props) {
       return (<p className={cn('message')}>Ваша корзина пуста</p>);
     }
 
-    return (<p className={cn('message')}>Ваша корзина полна</p>);
+    return cart.products.map((item) => renderItemTemplate(item));
   }
 
   return (
