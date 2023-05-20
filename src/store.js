@@ -71,6 +71,23 @@ class Store {
   }
 
   /**
+   * Удаление товара из корзины
+   * @param item {Object}
+   * @param setProducts {Function}
+   */
+  deleteProduct(item, setProducts) {
+    if(item.quantity > 1) {
+      item.quantity = item.quantity - 1;
+    }
+    else {
+      this.cart.products = this.cart.products.filter(product => product !== item);
+    }
+
+    this.cart.cost -= item.price;
+    setProducts(this.getQuantityProducts());
+  }
+
+  /**
    *  Получить количество товаров в корзине
    */
   getQuantityProducts() {

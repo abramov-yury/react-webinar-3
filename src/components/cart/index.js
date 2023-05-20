@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {cn as bem} from '@bem-react/classname';
 
 import Item from '../item/index.js';
@@ -10,25 +10,27 @@ import Button from '../button/index.js';
 function Cart (props) {
   const cn = bem('Cart');
   const {cart, closeCart} = props;
+  const [products, setProducts] = useState(cart.products);
 
-  const removeItem = () => {
-    console.log('Удалить элемент из корзины');
+  const deleteProduct = (item) => {
+    props.deleteProduct(item);
+    setProducts(cart.products);
   }
 
-  const renderItemTemplate = (item) => {
+  const renderProductTemplate = (item) => {
     return (
       <div key={item.code} className={cn('item')}>
-        <Item item={item} onClick={removeItem} quantity={item.quantity} buttonText="Удалить"/>
+        <Item item={item} onClick={deleteProduct} quantity={item.quantity} buttonText="Удалить"/>
       </div>
     )
   }
 
   const renderContentTemplate = () => {
-    if(!cart.products.length) {
+    if(!products.length) {
       return (<p className={cn('message')}>Ваша корзина пуста</p>);
     }
 
-    return cart.products.map((item) => renderItemTemplate(item));
+    return products.map((item) => renderProductTemplate(item));
   }
 
   return (

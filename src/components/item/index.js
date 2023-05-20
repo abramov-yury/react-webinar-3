@@ -7,13 +7,15 @@ import Button from '../button/index.js';
 
 function Item (props) {
 
-  const [count, setCount] = useState(0);
   const cn = bem('Item');
+  const [quantity, setQuantity] = useState(props.quantity);
+
 
   const callbacks = {
     onClick : (evt) => {
       evt.stopPropagation();
       props.onClick(props.item);
+      setQuantity(props.item.quantity);
     }
   }
 
@@ -24,7 +26,7 @@ function Item (props) {
         <span>{props.item.title}</span>
       </div>
       <div className={cn('price')}><span>{`${props.item.price} ₽`}</span></div>
-      {props.quantity && <div className={cn('quantity')}>{`${props.quantity} шт`}</div>}
+      {props.quantity && <div className={cn('quantity')}>{`${quantity} шт`}</div>}
       <div className={cn('actions')}>
         <Button onClick={callbacks.onClick} text={props.buttonText} />
       </div>

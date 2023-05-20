@@ -22,8 +22,11 @@ function App({store}) {
   const [isCartActive, switchCart] = useState(store.cart.active);
 
   const callbacks = {
-    addProduct : useCallback((code) => {
-      store.addProduct(code, setProducts);
+    addProduct : useCallback((item) => {
+      store.addProduct(item, setProducts);
+    }, [store]),
+    deleteProduct : useCallback((item) => {
+      store.deleteProduct(item, setProducts);
     }, [store]),
     toggleCart : useCallback(() => {
       store.toggleCart(switchCart);
@@ -39,14 +42,14 @@ function App({store}) {
 
   const renderCart = () => {
     return (
-      isCartActive && <Cart cart={store.cart} closeCart={callbacks.toggleCart} />
+      isCartActive && <Cart cart={store.cart} closeCart={callbacks.toggleCart} deleteProduct={callbacks.deleteProduct}/>
     )
   }
 
   return (
     <div className="App">
       <PageLayout>
-        <Head title='Магазин' />
+        <Head title="Магазин" />
         {renderControls()}
         <List list={list} addProducts={callbacks.addProduct}/>
       </PageLayout>
