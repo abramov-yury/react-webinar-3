@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import './styles.css';
 
 import Head from './components/head/index.js';
@@ -18,24 +18,38 @@ import Cart from './components/cart/index.js';
 function App({store}) {
 
   const list = store.getState().list;
+  const [cartItems, setCartItems] = useState(store.cart.items.length)
 
   const callbacks = {
     addItem : useCallback((code) => {
-      store.addItem(code);
+      store.addItem(code, setCartItems);
     }, [store]),
     toggleCart : useCallback(() => {
       store.toggleCart();
     }, [store]),
   }
 
+
+  const renderControls = () => {
+    return (
+      <Controls quantity={cartItems} cart={store.cart} openCart={callbacks.toggleCart}/>
+    )
+  }
+
+  const renderCart = () => {
+    return (
+      store.cart.active && <Cart closeCart={callbacks.toggleCart} />
+    )
+  }
+
   return (
     <div className="App">
       <PageLayout>
         <Head title='Магазин' />
-        <Controls openCart={callbacks.toggleCart} />
+        {renderControls()}
         <List list={list} addItem={callbacks.addItem}/>
       </PageLayout>
-      {store.cart.active && <Cart closeCart={callbacks.toggleCart} />}
+      {renderCart()}
     </div>
   );
 }

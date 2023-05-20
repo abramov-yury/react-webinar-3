@@ -8,6 +8,7 @@ class Store {
     this.cart = {
       items: [],
       active: false,
+      cost: 0,
     }
   }
 
@@ -52,11 +53,15 @@ class Store {
   }
 
   /**
-   * Добавление товара в корзину по коду
-   * @param code
+   * Добавление товара в корзину
+   * @param item {Object}
+   * @param setCartItems {Function}
    */
-  addItem(code) {
-    console.log(`Добавить товар - ${code} - в корзину`);
+  addItem(item, setCartItems) {
+    console.log(`Добавить товар - ${item.title} - в корзину`);
+    this.cart.items.push(item);
+    this.cart.cost += item.price;
+    setCartItems(this.cart.items.length);
   };
 }
 

@@ -11,7 +11,7 @@ function Item (props) {
   const callbacks = {
     addItem : (evt) => {
       evt.stopPropagation();
-      props.addItem(props.item.code);
+      props.addItem(props.item);
     }
   }
 
@@ -36,11 +36,7 @@ Item.propTypes = {
     selected: PropTypes.bool,
     price: PropTypes.number,
   }).isRequired,
-  addItem: PropTypes.func,
-}
-
-Item.defaultProps = {
-  addItem: () => {},
+  addItem: PropTypes.func.isRequired,
 }
 
 export default React.memo(Item);
