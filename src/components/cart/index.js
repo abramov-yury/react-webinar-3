@@ -24,7 +24,7 @@ function Cart (props) {
   }
 
   const renderContentTemplate = () => {
-    if(!cart.items.length) {
+    if(!cart.products.length) {
       return (<p className={cn('message')}>Ваша корзина пуста</p>);
     }
 

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import Item from "../item";
 import './style.css';
 
-function List({list, addItem}){
+function List({list, addProducts}){
   return (
     <div className='List'>{
       list.map(item =>
         <div key={item.code} className='List-item'>
-          <Item item={item} onClick={addItem} buttonText="Добавить"/>
+          <Item item={item} onClick={addProducts} buttonText="Добавить"/>
         </div>
       )}
     </div>
