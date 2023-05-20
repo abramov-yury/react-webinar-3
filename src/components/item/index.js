@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {cn as bem} from '@bem-react/classname';
 import './style.css';
 
 import Button from '../button/index.js';
@@ -7,23 +8,25 @@ import Button from '../button/index.js';
 function Item (props) {
 
   const [count, setCount] = useState(0);
+  const cn = bem('Item');
 
   const callbacks = {
-    addItem : (evt) => {
+    onClick : (evt) => {
       evt.stopPropagation();
-      props.addItem(props.item);
+      props.onClick(props.item);
     }
   }
 
   return (
-    <div className='Item'>
-      <div className='Item-code'>{props.item.code}</div>
-      <div className='Item-title'>
+    <div className={cn()}>
+      <div className={cn('code')}>{props.item.code}</div>
+      <div className={cn('title')}>
         <span>{props.item.title}</span>
       </div>
-      <div className='Item-price'><span>{`${props.item.price} ₽`}</span></div>
-      <div className='Item-actions'>
-        <Button onClick={callbacks.addItem} text="Добавить" />
+      <div className={cn('price')}><span>{`${props.item.price} ₽`}</span></div>
+      {props.quantity && <div className={cn('quantity')}>{props.quantity}</div>}
+      <div className={cn('actions')}>
+        <Button onClick={callbacks.onClick} text={props.buttonText} />
       </div>
     </div>
   )
@@ -36,7 +39,9 @@ Item.propTypes = {
     selected: PropTypes.bool,
     price: PropTypes.number,
   }).isRequired,
-  addItem: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  quantity: PropTypes.number,
 }
 
 export default React.memo(Item);

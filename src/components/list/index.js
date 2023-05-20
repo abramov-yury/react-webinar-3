@@ -8,7 +8,7 @@ function List({list, addItem}){
     <div className='List'>{
       list.map(item =>
         <div key={item.code} className='List-item'>
-          <Item item={item} addItem={addItem}/>
+          <Item item={item} onClick={addItem} buttonText="Добавить"/>
         </div>
       )}
     </div>

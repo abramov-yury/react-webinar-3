@@ -47,9 +47,9 @@ class Store {
    * Открыть корзину, модальное окно появляется в разметке.
    * Закрыть корзину, модальное окно исчезает из разметки.
    */
-  toggleCart() {
+  toggleCart(switchCart) {
     this.cart.active = !this.cart.active;
-    for (const listener of this.listeners) listener();
+    switchCart(this.cart.active);
   }
 
   /**

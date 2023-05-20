@@ -18,14 +18,15 @@ import Cart from './components/cart/index.js';
 function App({store}) {
 
   const list = store.getState().list;
-  const [cartItems, setCartItems] = useState(store.cart.items.length)
+  const [cartItems, setCartItems] = useState(store.cart.items.length);
+  const [isCartActive, switchCart] = useState(store.cart.active);
 
   const callbacks = {
     addItem : useCallback((code) => {
       store.addItem(code, setCartItems);
     }, [store]),
     toggleCart : useCallback(() => {
-      store.toggleCart();
+      store.toggleCart(switchCart);
     }, [store]),
   }
 
@@ -38,7 +39,7 @@ function App({store}) {
 
   const renderCart = () => {
     return (
-      store.cart.active && <Cart closeCart={callbacks.toggleCart} />
+      isCartActive && <Cart cart={store.cart} closeCart={callbacks.toggleCart} />
     )
   }
 
