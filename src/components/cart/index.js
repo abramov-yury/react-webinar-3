@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
 import {cn as bem} from '@bem-react/classname';
-
-import Item from '../item/index.js';
-
 import './style.css';
 
+import Item from '../item/index.js';
 import Button from '../button/index.js';
+import Total from '../total/index.js';
 
 function Cart (props) {
   const cn = bem('Cart');
   const {cart, closeCart} = props;
   const [products, setProducts] = useState(cart.products);
+  const [cost, setCost] = useState(cart.cost)
 
   const deleteProduct = (item) => {
     props.deleteProduct(item);
     setProducts(cart.products);
+    setCost(cart.cost);
   }
 
   const renderProductTemplate = (item) => {
     return (
-      <div key={item.code} className={cn('item')}>
+      <li key={item.code} className={cn('item')}>
         <Item item={item} onClick={deleteProduct} quantity={item.quantity} buttonText="Удалить"/>
-      </div>
+      </li>
     )
   }
 
@@ -30,7 +31,12 @@ function Cart (props) {
       return (<p className={cn('message')}>Ваша корзина пуста</p>);
     }
 
-    return products.map((item) => renderProductTemplate(item));
+    return [
+      <ul key='cart-products' className={cn('products')}>
+        {products.map((item) => renderProductTemplate(item))}
+      </ul>,
+      <Total key='cart-total' cost={cost} />
+    ];
   }
 
   return (

@@ -50,6 +50,13 @@
   font-weight: 700;
 }
 
+.Cart-products {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
 .Cart-item {
   border-bottom: 1px dashed #ccc;
 }

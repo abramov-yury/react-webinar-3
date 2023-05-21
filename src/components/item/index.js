@@ -25,8 +25,8 @@ function Item (props) {
       <div className={cn('title')}>
         <span>{props.item.title}</span>
       </div>
-      <div className={cn('price')}><span>{`${props.item.price} ₽`}</span></div>
-      {props.quantity && <div className={cn('quantity')}>{`${quantity} шт`}</div>}
+      <div className={cn('price')}><span>{props.item.price} ₽</span></div>
+      {props.quantity && <div className={cn('quantity')}>{quantity} шт</div>}
       <div className={cn('actions')}>
         <Button onClick={callbacks.onClick} text={props.buttonText} />
       </div>

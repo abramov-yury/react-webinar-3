@@ -1,0 +1,23 @@
+.Total {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+
+  padding: 20px;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.Total-left,
+.Total-right {
+  display: flex;
+  align-items: center;
+}
+
+.Total-left {
+  justify-content: flex-end;
+}
+
+.Total-right {
+  padding-left: 52px;
+}
