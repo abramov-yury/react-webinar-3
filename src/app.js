@@ -5,7 +5,7 @@ import Head from './components/head/index.js';
 import List from './components/list/index.js';
 import Controls from './components/controls/index.js';
 import PageLayout from './components/page-layout/index.js';
-import Cart from './components/cart/index.js';
+import Modal from './components/modal/index.js';
 
 /**
  * Приложение
@@ -18,15 +18,16 @@ import Cart from './components/cart/index.js';
 function App({store}) {
 
   const list = store.getState().list;
-  const [products, setProducts] = useState(store.getQuantityProducts());
+  const [products, setProducts] = useState(store.cart.products.length);
   const [isCartActive, switchCart] = useState(store.cart.active);
+  const [cost, setCost] = useState(store.cart.cost)
 
   const callbacks = {
     addProduct : useCallback((item) => {
-      store.addProduct(item, setProducts);
+      store.addProduct(item, setProducts, setCost);
     }, [store]),
     deleteProduct : useCallback((item) => {
-      store.deleteProduct(item, setProducts);
+      store.deleteProduct(item, setProducts, setCost);
     }, [store]),
     toggleCart : useCallback(() => {
       store.toggleCart(switchCart);
@@ -36,13 +37,13 @@ function App({store}) {
 
   const renderControls = () => {
     return (
-      <Controls quantity={products} cart={store.cart} openCart={callbacks.toggleCart}/>
+      <Controls quantity={products} cost={cost} openCart={callbacks.toggleCart}/>
     )
   }
 
   const renderCart = () => {
     return (
-      isCartActive && <Cart cart={store.cart} closeCart={callbacks.toggleCart} deleteProduct={callbacks.deleteProduct}/>
+      isCartActive && <Modal cart={store.cart} closeCart={callbacks.toggleCart} deleteProduct={callbacks.deleteProduct}/>
     )
   }
 

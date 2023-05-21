@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {cn as bem} from '@bem-react/classname';
+import {getPrice} from '../../utils.js';
 import './style.css';
 
 import Button from '../button/index.js';
@@ -25,7 +26,7 @@ function Item (props) {
       <div className={cn('title')}>
         <span>{props.item.title}</span>
       </div>
-      <div className={cn('price')}><span>{props.item.price} ₽</span></div>
+      <div className={cn('price')}><span>{getPrice(props.item.price)} ₽</span></div>
       {props.quantity && <div className={cn('quantity')}>{quantity} шт</div>}
       <div className={cn('actions')}>
         <Button onClick={callbacks.onClick} text={props.buttonText} />

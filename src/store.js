@@ -49,6 +49,9 @@ class Store {
    */
   toggleCart(switchCart) {
     this.cart.active = !this.cart.active;
+    if(this.cart.active) {
+      document.body.style.overflowY = 'hidden';
+    }
     switchCart(this.cart.active);
   }
 
@@ -56,8 +59,9 @@ class Store {
    * Добавление товара в корзину
    * @param item {Object}
    * @param setProducts {Function}
+   * @param setCost {function}
    */
-  addProduct(item, setProducts) {
+  addProduct(item, setProducts, setCost) {
     if (this.cart.products.includes(item)) {
       item.quantity = item.quantity + 1;
     }
@@ -67,24 +71,21 @@ class Store {
     }
 
     this.cart.cost += item.price;
-    setProducts(this.getQuantityProducts());
+    setProducts(this.cart.products.length);
+    setCost(this.cart.cost);
   }
 
   /**
    * Удаление товара из корзины
    * @param item {Object}
    * @param setProducts {Function}
+   * @param setCost {function}
    */
-  deleteProduct(item, setProducts) {
-    if(item.quantity > 1) {
-      item.quantity = item.quantity - 1;
-    }
-    else {
-      this.cart.products = this.cart.products.filter(product => product !== item);
-    }
-
-    this.cart.cost -= item.price;
-    setProducts(this.getQuantityProducts());
+  deleteProduct(item, setProducts, setCost) {
+    this.cart.products = this.cart.products.filter(product => product !== item);
+    this.cart.cost -= (item.price * item.quantity);
+    setProducts(this.cart.products.length);
+    setCost(this.cart.cost);
   }
 
   /**

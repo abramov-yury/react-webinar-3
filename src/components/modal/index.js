@@ -6,8 +6,8 @@ import Item from '../item/index.js';
 import Button from '../button/index.js';
 import Total from '../total/index.js';
 
-function Cart (props) {
-  const cn = bem('Cart');
+function Modal (props) {
+  const cn = bem('Modal');
   const {cart, closeCart} = props;
   const [products, setProducts] = useState(cart.products);
   const [cost, setCost] = useState(cart.cost)
@@ -54,4 +54,4 @@ function Cart (props) {
   )
 }
 
-export default React.memo(Cart);
+export default React.memo(Modal);

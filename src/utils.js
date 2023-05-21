@@ -24,3 +24,13 @@ export function plural(value, variants = {}, locale = 'ru-RU') {
 export function generateCode(){
   return generateCode.value ? ++generateCode.value : generateCode.value = 1;
 }
+
+/**
+ * Форматирует число цены.
+ * Разряды у цен разделены пробелами.
+ * Цена - целое число.
+ */
+
+export function getPrice(number) {
+  return new Intl.NumberFormat('ru-RU').format(Math.round(number))
+}

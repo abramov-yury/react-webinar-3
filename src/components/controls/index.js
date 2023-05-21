@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {plural} from '../../utils.js';
+import {getPrice, plural} from '../../utils.js';
 import './style.css';
 
 import Button from '../button/index.js';
 
-function Controls({quantity, cart, openCart}) {
+function Controls({quantity, cost, openCart}) {
 
   const getGoodsTemplate = () => {
     const firstPart = `${quantity} ${plural(quantity, {one: 'товар', few: 'товара', many: 'товаров'})}`;
-    const secondPart = `${cart.cost} ₽`;
+    const secondPart = `${getPrice(cost)} ₽`;
 
     return (
       `${firstPart} / ${secondPart}`
@@ -38,7 +38,7 @@ function Controls({quantity, cart, openCart}) {
 
 Controls.propTypes = {
   openCart: PropTypes.func.isRequired,
-  cart: PropTypes.object.isRequired,
+  cost: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
 }
 
