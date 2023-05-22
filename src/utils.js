@@ -18,12 +18,15 @@ export function plural(value, variants = {}, locale = 'ru-RU') {
 
 /**
  * Генератор чисел с шагом 1
- * Вариант с использованием функции как объекта для хранения значения value
+ * Вариант с замыканием на начальном значении в самовызываемой функции
  * @returns {Number}
  */
-export function generateCode(){
-  return generateCode.value ? ++generateCode.value : generateCode.value = 1;
-}
+
+export const generateCode = (
+  function (start = 0) {
+    return () => ++start;
+  }()
+);
 
 /**
  * Форматирует число цены.
